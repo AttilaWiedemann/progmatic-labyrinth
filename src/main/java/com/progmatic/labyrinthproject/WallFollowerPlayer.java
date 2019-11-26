@@ -10,10 +10,8 @@ import java.util.List;
 public class WallFollowerPlayer implements Player {
     private int roundCounter = 1;
     private Direction myWay;
-    private String preferedDirection = "right";
 
-    public WallFollowerPlayer(String preferedDirection) {
-        this.preferedDirection = preferedDirection;
+    public WallFollowerPlayer() {
     }
 
     @Override
