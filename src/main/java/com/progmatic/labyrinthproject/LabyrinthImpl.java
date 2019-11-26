@@ -62,6 +62,7 @@ public class LabyrinthImpl implements Labyrinth {
                             break;
                         case 'S':
                             labirinth[hh][ww] = CellType.START;
+                            playerPosition = new Coordinate(ww, hh);
                             break;
                         default:
                             labirinth[hh][ww] = CellType.EMPTY;
@@ -108,7 +109,7 @@ public class LabyrinthImpl implements Labyrinth {
 
     @Override
     public Coordinate getPlayerPosition() {
-        return null;
+        return playerPosition;
     }
 
     @Override
@@ -132,7 +133,38 @@ public class LabyrinthImpl implements Labyrinth {
 
     @Override
     public void movePlayer(Direction direction) throws InvalidMoveException {
-
+        int row = playerPosition.getRow();
+        int col = playerPosition.getCol();
+        switch (direction){
+            case SOUTH:
+                if(labirinth[row + 1][col].equals(CellType.WALL)){
+                    throw new InvalidMoveException();
+                }else {
+                    playerPosition = new Coordinate(col, row + 1);
+                }
+                break;
+            case NORTH:
+                if(row - 1 < 0 || labirinth[row - 1][col].equals(CellType.WALL)){
+                    throw new InvalidMoveException();
+                }else {
+                    playerPosition = new Coordinate(col, row - 1);
+                }
+                break;
+            case EAST:
+                if(labirinth[row][col + 1].equals(CellType.WALL)){
+                    throw new InvalidMoveException();
+                }else {
+                    playerPosition = new Coordinate(col + 1, row);
+                }
+                break;
+            case WEST:
+                if(col - 1 < 0 || labirinth[row][col - 1].equals(CellType.WALL)){
+                    throw new InvalidMoveException();
+                }else {
+                    playerPosition = new Coordinate(col - 1, row);
+                }
+                break;
+        }
     }
 
 }
