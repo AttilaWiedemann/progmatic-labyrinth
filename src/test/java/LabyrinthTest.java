@@ -282,7 +282,7 @@ public class LabyrinthTest {
         }
         assertEquals(true, l.hasPlayerFinished());
         assertEquals(l.getCellType(l.getPlayerPosition()), CellType.END);
-        /*String[] files = {"labyrinth2.txt", "labyrinth3.txt"};
+        String[] files = {"labyrinth2.txt", "labyrinth3.txt"};
         for (String file : files) {
             l = getLabyrinthImpl();
             l.loadLabyrinthFile(file);
@@ -292,7 +292,7 @@ public class LabyrinthTest {
             }
             assertEquals(true, l.hasPlayerFinished());
             assertEquals(l.getCellType(l.getPlayerPosition()), CellType.END);
-        }*/
+        }
     }
     
     @Test
