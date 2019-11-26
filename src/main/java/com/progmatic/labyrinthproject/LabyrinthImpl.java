@@ -71,17 +71,24 @@ public class LabyrinthImpl implements Labyrinth {
 
     @Override
     public CellType getCellType(Coordinate c) throws CellException {
-        return null;
+        int row = c.getRow();
+        int col = c.getCol();
+        return labirinth[row][col];
     }
 
     @Override
     public void setSize(int width, int height) {
-        this.labirinth = new CellType[width][height];
+        labirinth = new CellType[width][height];
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j <height; j++){
+                labirinth[i][j] = CellType.EMPTY;
+            }
+        }
     }
 
     @Override
     public void setCellType(Coordinate c, CellType type) throws CellException {
-
+        labirinth[c.getRow()][c.getCol()] = type;
     }
 
     @Override
