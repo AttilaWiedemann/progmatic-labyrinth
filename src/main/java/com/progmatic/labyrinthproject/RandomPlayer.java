@@ -7,13 +7,14 @@ import com.progmatic.labyrinthproject.interfaces.Player;
 import java.util.Random;
 
 public class RandomPlayer implements Player {
-    private Coordinate coordinate;
 
     @Override
     public Direction nextMove(Labyrinth l) {
+        /*
         Random r = new Random();
         switch (r.nextInt(4)) {
             case 0:
+                if(l.ge)
                 return Direction.NORTH;
             case 1:
                 return Direction.SOUTH;
@@ -22,13 +23,8 @@ public class RandomPlayer implements Player {
             default:
                 return Direction.EAST;
         }
-    }
 
-    public Coordinate getCoordinate() {
-        return coordinate;
-    }
-
-    public void setCoordinate(Coordinate coordinate) {
-        this.coordinate = coordinate;
+         */
+        return null;
     }
 }

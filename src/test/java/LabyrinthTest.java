@@ -6,6 +6,7 @@
 
 import com.progmatic.labyrinthproject.Coordinate;
 import com.progmatic.labyrinthproject.LabyrinthImpl;
+import com.progmatic.labyrinthproject.RandomPlayer;
 import com.progmatic.labyrinthproject.enums.CellType;
 import com.progmatic.labyrinthproject.enums.Direction;
 import com.progmatic.labyrinthproject.exceptions.CellException;
@@ -188,7 +189,6 @@ public class LabyrinthTest {
             {"#", "#", "#", "#", "#"}};
         l = fromString(lArr4);
         assertEquals(2, l.possibleMoves().size());
-        
         String[][] lArr5 = {
             {"#", "#", "#", "#", "#"},
             {"#", " ", "#", " ", "E"},
@@ -388,7 +388,7 @@ public class LabyrinthTest {
     
     // TODO
     private Player getRandomPlayerImpl() {
-        return null;
+        return new RandomPlayer();
     }
     
     // TODO

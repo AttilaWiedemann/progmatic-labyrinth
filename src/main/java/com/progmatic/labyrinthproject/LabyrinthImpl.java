@@ -9,6 +9,7 @@ import com.progmatic.labyrinthproject.interfaces.Player;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -128,7 +129,19 @@ public class LabyrinthImpl implements Labyrinth {
 
     @Override
     public List<Direction> possibleMoves() {
-        return null;
+        int row = playerPosition.getRow();
+        int col = playerPosition.getCol();
+        ArrayList<Direction> moves = new ArrayList<>();
+        if(row + 1 < labirinth.length && !labirinth[row+1][col].equals(CellType.WALL)){
+            moves.add(Direction.SOUTH);
+        }if(row - 1 >= 0 && !labirinth[row-1][col].equals(CellType.WALL)){
+            moves.add(Direction.NORTH);
+        }if(col + 1 < labirinth.length && !labirinth[row][col+1].equals(CellType.WALL)){
+            moves.add(Direction.EAST);
+        }if(col -1 >= 0 && !labirinth[row][col -1].equals(CellType.WALL)){
+            moves.add(Direction.WEST);
+        }
+        return moves;
     }
 
     @Override
