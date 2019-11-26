@@ -73,7 +73,11 @@ public class LabyrinthImpl implements Labyrinth {
     public CellType getCellType(Coordinate c) throws CellException {
         int row = c.getRow();
         int col = c.getCol();
-        return labirinth[row][col];
+        try {
+            return labirinth[row][col];
+        }catch (IndexOutOfBoundsException e){
+            throw new CellException(row, col, "Nincs ilyen mező");
+        }
     }
 
     @Override
