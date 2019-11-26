@@ -5,10 +5,13 @@ import com.progmatic.labyrinthproject.enums.Direction;
 import com.progmatic.labyrinthproject.exceptions.CellException;
 import com.progmatic.labyrinthproject.exceptions.InvalidMoveException;
 import com.progmatic.labyrinthproject.interfaces.Labyrinth;
+import com.progmatic.labyrinthproject.interfaces.Player;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 /**
  *
@@ -17,6 +20,7 @@ import java.util.Scanner;
 public class LabyrinthImpl implements Labyrinth {
     //Valósítsd meg, hogy a LabyrinthImpl osztály tárolni tudjon egy labirintust!
     private CellType[][] labirinth;
+    private Coordinate playerPosition;
 
     public LabyrinthImpl() {
     }
@@ -92,7 +96,14 @@ public class LabyrinthImpl implements Labyrinth {
 
     @Override
     public void setCellType(Coordinate c, CellType type) throws CellException {
-        labirinth[c.getRow()][c.getCol()] = type;
+        try {
+            labirinth[c.getRow()][c.getCol()] = type;
+            if (type.equals(CellType.START)){
+                this.playerPosition = c;
+            }
+        }catch (IndexOutOfBoundsException e){
+            throw new CellException(c.getCol(), c.getRow(), "Nincs ilyen mező");
+        }
     }
 
     @Override
@@ -102,6 +113,15 @@ public class LabyrinthImpl implements Labyrinth {
 
     @Override
     public boolean hasPlayerFinished() {
+        for(int i = 0; i < labirinth.length; i++){
+            for(int j = 0; j < labirinth[i].length; j++){
+                if(labirinth[i][j].equals(CellType.END)){
+                    if(playerPosition.getRow() == i && playerPosition.getCol() == j){
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 
